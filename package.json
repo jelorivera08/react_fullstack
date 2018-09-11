@@ -1,0 +1,12 @@
+{
+  "name": "jelofullstack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^4.0.1"
+  }
+}
