@@ -5,7 +5,7 @@ class App extends Component {
   state = {
     data: [],
     id: 0,
-    dataFromBody: null,
+    message: null,
     intervalIsSet: false,
     idToDelete: null,
     idToUpdate: null,
@@ -33,7 +33,7 @@ class App extends Component {
       .then(res => this.setState({ data: res.data }));
   };
 
-  putDataToDB = dataFromBody => {
+  putDataToDB = message => {
     let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = 0;
     while (currentIds.includes(idToBeAdded)) {
@@ -42,7 +42,7 @@ class App extends Component {
 
     axios.post("/api/putData", {
       id: idToBeAdded,
-      dataFromBody: dataFromBody
+      message: message
     });
   };
 
@@ -71,7 +71,7 @@ class App extends Component {
 
     axios.post("/api/updateData", {
       id: objIdToUpdate,
-      update: { dataFromBody: updateToApply }
+      update: { message: updateToApply }
     });
   };
 
@@ -80,22 +80,22 @@ class App extends Component {
     return (
       <div>
         <ul>
-          {data.map(dat => (
+          {data.length <= 0 ? "NO DB ENTRIES YET" : data.map(dat => (
             <li style={{ padding: "10px" }}>
               <span style={{ color: "gray" }}> id: </span> {dat.id} <br />
               <span style={{ color: "gray" }}> data: </span>
-              {dat.dataFromBody}
+              {dat.message}
             </li>
           ))}
         </ul>
         <div style={{ padding: "10px" }}>
           <input
             type="text"
-            onChange={e => this.setState({ dataFromBody: e.target.value })}
+            onChange={e => this.setState({ message: e.target.value })}
             placeholder="add something in the database"
             style={{ width: "200px" }}
           />
-          <button onClick={() => this.putDataToDB(this.state.dataFromBody)}>
+          <button onClick={() => this.putDataToDB(this.state.message)}>
             ADD
           </button>
         </div>

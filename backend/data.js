@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const DataSchema = new Schema(
   {
     id: Number,
-    dataFromBody: String
+    message: String
   },
   { timestamps: true }
 );
