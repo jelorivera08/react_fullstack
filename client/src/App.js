@@ -28,7 +28,7 @@ class App extends Component {
   }
 
   getDataFromDb = () => {
-    fetch("/api/getData")
+    fetch("http://localhost:3001/api/getData")
       .then(data => data.json())
       .then(res => this.setState({ data: res.data }));
   };
@@ -40,7 +40,7 @@ class App extends Component {
       ++idToBeAdded;
     }
 
-    axios.post("/api/putData", {
+    axios.post("http://localhost:3001/api/putData", { 
       id: idToBeAdded,
       message: message
     });
@@ -49,12 +49,12 @@ class App extends Component {
   deleteFromDB = idTodelete => {
     let objIdToDelete = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idTodelete) {
+      if (dat.id === idTodelete) {
         objIdToDelete = dat._id;
       }
     });
 
-    axios.delete("/api/deleteData", {
+    axios.delete("http://localhost:3001/api/deleteData", {
       data: {
         id: objIdToDelete
       }
@@ -64,12 +64,12 @@ class App extends Component {
   updateDB = (idToUpdate, updateToApply) => {
     let objIdToUpdate = null;
     this.state.data.forEach(dat => {
-      if (dat.id == idToUpdate) {
+      if (dat.id === idToUpdate) {
         objIdToUpdate = dat._id;
       }
     });
 
-    axios.post("/api/updateData", {
+    axios.post("http://localhost:3001/api/updateData", {
       id: objIdToUpdate,
       update: { message: updateToApply }
     });
@@ -81,7 +81,7 @@ class App extends Component {
       <div>
         <ul>
           {data.length <= 0 ? "NO DB ENTRIES YET" : data.map(dat => (
-            <li style={{ padding: "10px" }}>
+            <li style={{ padding: "10px" }} key={dat}>
               <span style={{ color: "gray" }}> id: </span> {dat.id} <br />
               <span style={{ color: "gray" }}> data: </span>
               {dat.message}
