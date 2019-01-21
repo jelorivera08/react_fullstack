@@ -8,4 +8,5 @@ steps to run the code
  4. cd client
  5. npm install
  6. cd ..
+ 7. npm install
  7. npm start
