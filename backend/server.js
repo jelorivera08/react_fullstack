@@ -4,9 +4,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
+var cors = require('cors');
 
 const API_PORT = 3001;
 const app = express();
+app.use(cors({orign:'http://localhost:3000/'}));
 const router = express.Router();
 
 mongoose.connect(getSecret("dbUri"));
