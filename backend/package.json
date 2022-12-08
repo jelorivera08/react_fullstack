@@ -9,7 +9,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "mongoose": "^5.2.14",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.4"
